@@ -76,6 +76,7 @@ function doIfKey(e) {
   }
   if (e.ctrlKey && e.shiftKey && e.code === "KeyT") return window.open()
   if (e.ctrlKey && e.shiftKey && e.code === "KeyS") return window.open("https://duckduckgo.com")
+  if (e.ctrlKey && e.shiftKey && e.code === "KeyX") return window.open("https://google.com")
 
   // TODO maybe not a good idea to use S and T
   // TODO window.find()
