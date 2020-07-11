@@ -29,7 +29,7 @@ function scrollToTop() { window.scrollTo(window.scrollX, 0); }
 
 function scrollToBottom() { window.scrollTo(window.scrollX, document.body.scrollHeight); }
 
-let gRepeat, dRepeat
+let gRepeat, dRepeat, hRepeat, lRepeat, tRepeat, sRepeat, xRepeat
 function doIfKey(e) {
 
   function hitTwice(repeat, fn){
@@ -45,8 +45,8 @@ function doIfKey(e) {
       // twice
       repeat = undefined 
 
-      // if we have hit key twice within a second we call callback
-      if (secs_since_last_key_hit < 1) fn()
+      // if we have hit key twice within a half a second we call callback
+      if (secs_since_last_key_hit < 0.5) fn()
     }
     return repeat = new Date()
   }
@@ -65,8 +65,18 @@ function doIfKey(e) {
     })
     return gRepeat
   }
-  if (e.shiftKey && e.code === "KeyH") return window.history.back()
-  if (e.shiftKey && e.code === "KeyL") return window.history.forward()
+  if (e.code === "KeyH") {
+    hRepeat = hitTwice(hRepeat, function() {
+      window.history.back()
+    })
+    return hRepeat
+  }
+  if (e.code === "KeyL") {
+    lRepeat = hitTwice(lRepeat, function() {
+      window.history.forward()
+    })
+    return lRepeat
+  }
   // we can only close window we have opened ourselfs
   if (e.code === "KeyD") {
     dRepeat = hitTwice(dRepeat, function() {
@@ -74,12 +84,31 @@ function doIfKey(e) {
     })
     return dRepeat
   }
-  if (e.ctrlKey && e.shiftKey && e.code === "KeyT") return window.open()
-  if (e.ctrlKey && e.shiftKey && e.code === "KeyS") return window.open("https://duckduckgo.com")
-  if (e.ctrlKey && e.shiftKey && e.code === "KeyX") return window.open("https://google.com")
+  if (e.code === "KeyT") {
+    tRepeat = hitTwice(tRepeat, function() {
+      return window.open()
+      // the user could then do ctrl + l to be able to write in the addressbar
+    })
+    return tRepeat
+  }
+  // if (e.ctrlKey && e.shiftKey && e.code === "KeyT") {
+    // return window.open()
+    // the user could then do ctrl + l to be able to write in the addressbar
+  // }
+  if (e.code === "KeyS") {
+    sRepeat = hitTwice(sRepeat, function() {
+      window.open("https://duckduckgo.com")
+    })
+    return sRepeat
+  }
+  if (e.code === "KeyX") {
+    xRepeat = hitTwice(xRepeat, function() {
+      window.open("https://google.com")
+    })
+    return xRepeat
+  }
 
-  // TODO maybe not a good idea to use S and T
-  // TODO window.find()
-  // TODO open what window.find() found
+  // TODO window.find() or just use Firefix quickfind / 
+  // TODO open what window.find() found or just use enter after quick found
 }
 document.addEventListener('keydown', doIfKey);
