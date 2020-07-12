@@ -65,26 +65,26 @@ function doIfKey(e) {
     })
     return gRepeat
   }
-  if (e.code === "KeyH") {
+  if (e.shiftKey && e.code === "KeyH") {
     hRepeat = hitTwice(hRepeat, function() {
       window.history.back()
     })
     return hRepeat
   }
-  if (e.code === "KeyL") {
+  if (e.shiftKey && e.code === "KeyL") {
     lRepeat = hitTwice(lRepeat, function() {
       window.history.forward()
     })
     return lRepeat
   }
   // we can only close window we have opened ourselfs
-  if (e.code === "KeyD") {
+  if (e.shiftKey && e.code === "KeyD") {
     dRepeat = hitTwice(dRepeat, function() {
       window.close()
     })
     return dRepeat
   }
-  if (e.code === "KeyT") {
+  if (e.shiftKey && e.code === "KeyT") {
     tRepeat = hitTwice(tRepeat, function() {
       return window.open()
       // the user could then do ctrl + l to be able to write in the addressbar
@@ -95,13 +95,13 @@ function doIfKey(e) {
     // return window.open()
     // the user could then do ctrl + l to be able to write in the addressbar
   // }
-  if (e.code === "KeyS") {
+  if (e.shiftKey && e.code === "KeyS") {
     sRepeat = hitTwice(sRepeat, function() {
       window.open("https://duckduckgo.com")
     })
     return sRepeat
   }
-  if (e.code === "KeyX") {
+  if (e.shiftKey && e.code === "KeyX") {
     xRepeat = hitTwice(xRepeat, function() {
       window.open("https://google.com")
     })
