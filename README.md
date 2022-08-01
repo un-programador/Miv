@@ -17,7 +17,7 @@ web-ext run
 https://extensionworkshop.com/documentation/publish/package-your-extension/#package-linux
 
 # zip for release (standing in root directory).
- zip -r -FS ../mini_vim.zip * -x *.git* 
+ zip -r -FS ../miv.zip * -x *.git* 
 
 # links
 https://addons.mozilla.org/en-GB/developers/addon/miv

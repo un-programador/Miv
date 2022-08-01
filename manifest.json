@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "MiniVim",
+  "name": "Miv",
   "version": "1.4",
 
   "description": "A couple of vim like shortcuts for Firefox.",
@@ -12,13 +12,13 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["mini_vim.js"]
+      "js": ["miv.js"]
     }
   ],
 
   "browser_specific_settings": {
     "gecko": {
-      "id": "minivim@mathiashh.dk"
+      "id": "miv@mathiashh.dk"
     }
   }
 }
