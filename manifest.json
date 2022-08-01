@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
   "name": "Miv",
-  "version": "1.4",
+  "version": "1.5",
 
-  "description": "A couple of vim like shortcuts for Firefox.",
+  "description": "Some vim like keymappings for Firefox.",
 
   "icons": {
     "48": "icons/bgcolor-48.png"
