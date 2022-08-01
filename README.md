@@ -1,5 +1,19 @@
 # Miv
 
+# The add-on has some Firefox navigation keymappings inspired by Vim:
+j : down
+k : up
+f : scroll down
+b : scroll up
+gg : scroll to top
+G : scroll to bottom
+Shift + tt : new empty tab
+Shift + ss : new tab with https://duckduckgo.com
+Shift + xx : new tab with https://google.com
+Shift + dd : close tab (works only with tabs that was opened with shift + tt, shift + ss or shift + xx. It is a Firefox rule).
+Shift + hh : go back
+shift + ll : go forward
+
 # hello world tutorial
 https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension
 
