@@ -1,4 +1,4 @@
-# MiniVim
+# Miv
 
 # hello world tutorial
 https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension
@@ -20,4 +20,4 @@ https://extensionworkshop.com/documentation/publish/package-your-extension/#pack
  zip -r -FS ../mini_vim.zip * -x *.git* 
 
 # links
-https://addons.mozilla.org/en-GB/developers/addon/minivim
+https://addons.mozilla.org/en-GB/developers/addon/miv
