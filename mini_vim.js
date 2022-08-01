@@ -16,7 +16,12 @@ limitations under the License.
 
 // for debugging if the plugin is connected
 // document.body.style.border = "5px solid red"
-//
+
+let inputHasFocus = false;
+
+// https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollByLines
+// TODO the API scrollByLines only works in Firefox. Change to and API that
+// works in other browsers
 function scrollDown(amount) { window.scrollByLines(amount); }
 
 function scrollUp(amount) { window.scrollByLines(-amount); }
@@ -54,14 +59,25 @@ function doIfKey(e) {
   // console.log(e.keyCode);
   // console.log(e.ctrlKey);
 
-  if (e.code === "KeyJ") return scrollDown(10) 
-  if (e.code === "KeyK") return scrollUp(10)
-  if (e.code === "KeyF") return scrollDown(50)
-  if (e.code === "KeyB") return scrollUp(50)
-  if (e.shiftKey && e.code === "KeyG") return scrollToBottom()
+  if (e.code === "KeyJ") {
+    if (!inputHasFocus) return scrollDown(10)
+  }
+  if (e.code === "KeyK") {
+    if (!inputHasFocus) return scrollUp(10)
+  }
+  if (e.code === "KeyF") {
+    if (!inputHasFocus) return scrollDown(50)
+  }
+  if (e.code === "KeyB") {
+    if (!inputHasFocus) return scrollUp(50)
+  }
+
+  if (e.shiftKey && e.code === "KeyG") {
+    if (!inputHasFocus) return scrollToBottom()
+  }
   if (e.code === "KeyG") {
     gRepeat = hitTwice(gRepeat, function() {
-      scrollToTop()
+      if (!inputHasFocus) scrollToTop()
     })
     return gRepeat
   }
@@ -111,4 +127,15 @@ function doIfKey(e) {
   // TODO window.find() or just use Firefix quickfind / 
   // TODO open what window.find() found or just use enter after quick found
 }
+
+function myOnFocusIn(event) {
+  inputHasFocus = true;
+}
+
+function myOnFocusOut(event) {
+  inputHasFocus = false;
+}
+
 document.addEventListener('keydown', doIfKey);
+document.addEventListener('focusin', myOnFocusIn);
+document.addEventListener('focusout', myOnFocusOut);

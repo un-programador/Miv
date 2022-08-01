@@ -8,8 +8,10 @@ about:debugging#addons
 
 # make developing a plugin faster:
 https://extensionworkshop.com/documentation/develop/getting-started-with-web-ext/
-# run extension
+# run extension from a shell
 web-ext run
+# then open about:debugging#/runtime/this-firefox in the browser that gets 
+# opened with web-ext run
 
 # release
 https://extensionworkshop.com/documentation/publish/package-your-extension/#package-linux
