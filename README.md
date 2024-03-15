@@ -1,6 +1,7 @@
 # Miv
 
 ## The add-on has some Firefox navigation keymappings inspired by Vim:
+
 j : down
 
 k : up
@@ -13,13 +14,9 @@ gg : scroll to top
 
 G : scroll to bottom
 
-Shift + tt : new empty tab
+Shift + ss : change current tab to https://duckduckgo.com
 
-Shift + ss : new tab with https://duckduckgo.com
-
-Shift + xx : new tab with https://google.com
-
-Shift + dd : close tab (works only with tabs that was opened with shift + tt, shift + ss or shift + xx. It is a Firefox rule).
+Shift + xx : change current tab to https://google.com
 
 Shift + hh : go back
 
@@ -44,7 +41,13 @@ Then open about:debugging#/runtime/this-firefox in the browser that gets opened 
 https://extensionworkshop.com/documentation/publish/package-your-extension/#package-linux
 
 ### zip for release (standing in root directory).
- zip -r -FS ../miv.zip * -x *.git* 
+ zip -r -FS ../miv.zip * -x *.git*
 
 ## Links
 https://addons.mozilla.org/en-GB/developers/addon/miv
+
+## Tabs - some notes about Firefox tabs programming
+https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Working_with_the_Tabs_API
+https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/Tabs/create
+https://stackoverflow.com/questions/55022508/browser-tabs-is-undefined-in-firefox-extension
+https://github.com/mdn/webextensions-examples/tree/main/commands

@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Miv",
-  "version": "1.5",
+  "version": "1.6",
 
   "description": "Some vim like keymappings for Firefox.",
 
@@ -18,7 +18,7 @@
 
   "browser_specific_settings": {
     "gecko": {
-      "id": "miv@mathiashh.dk"
+      "id": "minivim@mathiashh.dk"
     }
   }
 }

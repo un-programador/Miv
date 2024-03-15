@@ -6,20 +6,23 @@ dosn't work. It creates this error:
   Your Firefox profile cannot be loaded. It may be missing or inaccessible.
 
 
-Still haven't fixed it. To create a new profile like explained below dosn' seem
-like it is fixing it
+Still haven't fixed it. To create a new profile like explained below dosn't seem
+like it is fixing it.
 
 
 # https://support.mozilla.org/en-US/kb/back-and-restore-information-firefox-profiles
 # https://support.mozilla.org/en-US/kb/how-run-firefox-when-profile-missing-inaccessible
+
+
 # in browser
 # about:support
 
+
 profile is here:
 
-/home/mhh/snap/firefox/common/.mozilla/profiles.ini
+~/snap/firefox/common/.mozilla/profiles.ini
 # it points to:
-/home/mhh/snap/firefox/common/.mozilla/firefox/mn2djk6k.default
+~/snap/firefox/common/.mozilla/firefox/mn2djk6k.default
 
 backup of profile is here:
 ~/Desktop

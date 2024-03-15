@@ -13,11 +13,17 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-
 // for debugging if the plugin is connected
 // document.body.style.border = "5px solid red"
 
+// We want to be able to scroll down with j ect. at first
 let inputHasFocus = false;
+
+// if page is duckduckgo.com we don't want to be able to scroll down at first
+// because duckduckgo starts page with a input search field focused
+if (window.location.href === "https://duckduckgo.com/") {
+  inputHasFocus = true;
+}
 
 // https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollByLines
 // TODO the API scrollByLines only works in Firefox. Change to and API that
@@ -38,17 +44,17 @@ let gRepeat, dRepeat, hRepeat, lRepeat, tRepeat, sRepeat, xRepeat
 function doIfKey(e) {
 
   function hitTwice(repeat, fn){
-    // if it is not first time we type key 
-    if (repeat !== undefined) {  
+    // if it is not first time we type key
+    if (repeat !== undefined) {
       // calculate time between each key hit
       const now = new Date()
       const timeDiffMs = now - repeat
       const secs_since_last_key_hit = timeDiffMs / 1000
 
       // we use repeat to check if key has been hit twice
-      // to be able to do so it must be undefined after it has been hit 
+      // to be able to do so it must be undefined after it has been hit
       // twice
-      repeat = undefined 
+      repeat = undefined
 
       // if we have hit key twice within a half a second we call callback
       if (secs_since_last_key_hit < 0.5) fn()
@@ -93,38 +99,26 @@ function doIfKey(e) {
     })
     return lRepeat
   }
-  // we can only close window we have opened ourselfs
-  if (e.shiftKey && e.code === "KeyD") {
-    dRepeat = hitTwice(dRepeat, function() {
-      window.close()
-    })
-    return dRepeat
-  }
-  if (e.shiftKey && e.code === "KeyT") {
-    tRepeat = hitTwice(tRepeat, function() {
-      return window.open()
-      // the user could then do ctrl + l to be able to write in the addressbar
-    })
-    return tRepeat
-  }
-  // if (e.ctrlKey && e.shiftKey && e.code === "KeyT") {
-    // return window.open()
-    // the user could then do ctrl + l to be able to write in the addressbar
-  // }
   if (e.shiftKey && e.code === "KeyS") {
     sRepeat = hitTwice(sRepeat, function() {
-      window.open("https://duckduckgo.com")
+      // This dosn't open a link in a new tab anymore
+      // window.open("https://duckduckgo.com")
+      // neither does this
+      // window.open("https://duckduckgo.com", "_blank")
+      //
+      // instead we redirect the previous window to the new URL
+      location.href = "https://duckduckgo.com"
     })
     return sRepeat
   }
   if (e.shiftKey && e.code === "KeyX") {
     xRepeat = hitTwice(xRepeat, function() {
-      window.open("https://google.com")
+      location.href = "https://google.com"
     })
     return xRepeat
   }
 
-  // TODO window.find() or just use Firefix quickfind / 
+  // TODO window.find() or just use Firefix quickfind /
   // TODO open what window.find() found or just use enter after quick found
 }
 
