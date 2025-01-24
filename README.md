@@ -42,6 +42,8 @@ https://extensionworkshop.com/documentation/publish/package-your-extension/#pack
 
 ### zip for release (standing in root directory).
  zip -r -FS ../miv.zip * -x *.git*
+ or 
+ zip -r -FS ../miv.zip * -x *.git* -x zips*
 
 ## Links
 https://addons.mozilla.org/en-GB/developers/addon/miv

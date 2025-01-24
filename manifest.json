@@ -1,12 +1,12 @@
 {
   "manifest_version": 2,
   "name": "Miv",
-  "version": "1.6",
+  "version": "1.7",
 
-  "description": "Some vim like keymappings for Firefox.",
+  "description": "Some vim like keymappings for Firefox and Chromium browsers.",
 
   "icons": {
-    "48": "icons/bgcolor-48.png"
+    "48": "icons/icon48.png"
   },
 
   "content_scripts": [

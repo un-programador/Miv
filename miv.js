@@ -16,21 +16,9 @@ limitations under the License.
 // for debugging if the plugin is connected
 // document.body.style.border = "5px solid red"
 
-// We want to be able to scroll down with j ect. at first
-let inputHasFocus = false;
+function scrollDown(amount) { window.scrollBy(0, amount * 10) }
 
-// if page is duckduckgo.com we don't want to be able to scroll down at first
-// because duckduckgo starts page with a input search field focused
-if (window.location.href === "https://duckduckgo.com/") {
-  inputHasFocus = true;
-}
-
-// https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollByLines
-// TODO the API scrollByLines only works in Firefox. Change to and API that
-// works in other browsers
-function scrollDown(amount) { window.scrollByLines(amount); }
-
-function scrollUp(amount) { window.scrollByLines(-amount); }
+function scrollUp(amount) { window.scrollBy(0, -amount * 10); }
 
 function scrollRight(amount) { window.scrollRight(amount) }
 
@@ -65,28 +53,42 @@ function doIfKey(e) {
   // console.log(e.keyCode);
   // console.log(e.ctrlKey);
 
-  if (e.code === "KeyJ") {
-    if (!inputHasFocus) return scrollDown(10)
-  }
-  if (e.code === "KeyK") {
-    if (!inputHasFocus) return scrollUp(10)
-  }
-  if (e.code === "KeyF") {
-    if (!inputHasFocus) return scrollDown(50)
-  }
-  if (e.code === "KeyB") {
-    if (!inputHasFocus) return scrollUp(50)
+  function isNotSomeInput(activeElement) { 
+    return activeElement !== "input" && 
+      activeElement !== "textarea" &&
+      activeElement !== "select";
   }
 
-  if (e.shiftKey && e.code === "KeyG") {
-    if (!inputHasFocus) return scrollToBottom()
+  const activeElement = document.activeElement.tagName.toLowerCase();
+
+  if (e.code === "KeyJ" && isNotSomeInput(activeElement)) {
+    return scrollDown(20);
   }
-  if (e.code === "KeyG") {
+  
+  if (e.code === "KeyK" && isNotSomeInput(activeElement)) {
+    return scrollUp(20);
+
+  }
+
+  if (e.code === "KeyF" && isNotSomeInput(activeElement)) {
+      return scrollDown(50);
+  }
+  if (e.code === "KeyB" && isNotSomeInput(activeElement)) {
+    return scrollUp(50);
+  }
+
+  // type G
+  if (e.shiftKey && e.code === "KeyG" && isNotSomeInput(activeElement)) {
+    return scrollToBottom();
+  }
+  // type gg
+  if (e.code === "KeyG" && isNotSomeInput(activeElement)) {
     gRepeat = hitTwice(gRepeat, function() {
-      if (!inputHasFocus) scrollToTop()
+      scrollToTop();
     })
     return gRepeat
   }
+
   if (e.shiftKey && e.code === "KeyH") {
     hRepeat = hitTwice(hRepeat, function() {
       window.history.back()
@@ -99,6 +101,7 @@ function doIfKey(e) {
     })
     return lRepeat
   }
+
   if (e.shiftKey && e.code === "KeyS") {
     sRepeat = hitTwice(sRepeat, function() {
       // This dosn't open a link in a new tab anymore
@@ -122,14 +125,4 @@ function doIfKey(e) {
   // TODO open what window.find() found or just use enter after quick found
 }
 
-function myOnFocusIn(event) {
-  inputHasFocus = true;
-}
-
-function myOnFocusOut(event) {
-  inputHasFocus = false;
-}
-
 document.addEventListener('keydown', doIfKey);
-document.addEventListener('focusin', myOnFocusIn);
-document.addEventListener('focusout', myOnFocusOut);
